@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>FinStream · 全球金融行情</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">FS</div>
+        <div class="brand-text">
+          <h1>FinStream</h1>
+          <p>全球金融行情终端</p>
+        </div>
+      </div>
+
+      <div class="ticker" aria-label="实时行情滚动">
+        <div class="ticker-track" id="tickerTrack"></div>
+      </div>
+
+      <div class="conn">
+        <span class="conn-dot" id="connDot"></span>
+        <span class="conn-text" id="connText">连接中</span>
+        <span class="clock" id="clock">--:--:--</span>
+      </div>
+    </header>
+
+    <section class="overview" id="overview" aria-label="指数概览"></section>
+
+    <main class="workspace">
+      <section class="panel watchlist">
+        <div class="panel-head">
+          <div>
+            <h2>自选行情</h2>
+            <p class="sub" id="watchSub">正在载入…</p>
+          </div>
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2" />
+              <path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <input id="search" type="search" placeholder="搜索代码或名称" autocomplete="off" />
+          </label>
+        </div>
+
+        <div class="filters" id="filters" role="tablist" aria-label="市场筛选"></div>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th class="col-name">名称 / 代码</th>
+                <th class="num sortable" data-sort="price">最新价<span class="arrow"></span></th>
+                <th class="num sortable" data-sort="changePct">涨跌幅<span class="arrow"></span></th>
+                <th class="num spark-col">分时</th>
+                <th class="num sortable" data-sort="volume">成交量<span class="arrow"></span></th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="panel detail">
+        <div class="detail-head">
+          <div class="detail-title">
+            <h2 id="detailName">--</h2>
+            <p class="sub" id="detailMeta">--</p>
+          </div>
+          <div class="detail-quote">
+            <strong id="detailPrice">--</strong>
+            <span class="pill" id="detailChange">--</span>
+          </div>
+        </div>
+
+        <div class="chart">
+          <canvas id="chart"></canvas>
+          <div class="chart-hint" id="chartHint">选择左侧标的查看分时走势</div>
+        </div>
+
+        <dl class="stats" id="stats"></dl>
+
+        <p class="disclaimer">数据由本地模拟行情引擎生成，仅用于界面演示，不构成任何投资建议。</p>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <span>Python 标准库 · SSE 实时推送 · Canvas 分时图</span>
+      <span id="serverTime">--</span>
+    </footer>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
